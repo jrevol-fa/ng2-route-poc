@@ -2,7 +2,9 @@ import { Organization } from '../organization';
 import { Account } from '../../account';
 import { Transaction } from './transaction';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class TransactionRepository {
 
     private transactions: Transaction[] = [
