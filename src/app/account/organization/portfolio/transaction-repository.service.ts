@@ -3,6 +3,7 @@ import { Account } from '../../account';
 import { Transaction } from './transaction';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Filter } from '../filter';
 
 @Injectable()
 export class TransactionRepository {
@@ -13,7 +14,7 @@ export class TransactionRepository {
         { id: 789, name: 'Cap GHI' }
     ];
 
-    findAll(account: Account, organization: Organization): Observable<Transaction[]> {
+    findAll(account: Account, organization: Organization, filter?: Filter): Observable<Transaction[]> {
         return Observable.of(this.transactions);
     }
 }

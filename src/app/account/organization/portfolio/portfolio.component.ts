@@ -12,21 +12,21 @@ import { Subscription } from 'rxjs';
 export class PortfolioComponent implements OnInit, OnDestroy {
 
     transactions: Transaction[];
-    private sub: Subscription;
+    private transactionsSub: Subscription;
 
     constructor(private route: ActivatedRoute,
                 private repository: TransactionRepository) {
     }
 
     ngOnInit() {
-        this.sub = this.route.data
+        this.transactionsSub = this.route.data
             .flatMap((data: {account: Account, organization: Organization}) =>
                 this.repository.findAll(data.account, data.organization))
             .subscribe(transactions => this.transactions = transactions);
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        this.transactionsSub.unsubscribe();
     }
 
 }
