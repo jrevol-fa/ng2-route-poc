@@ -5,7 +5,6 @@ import { Transaction } from './transaction';
 import { Organization } from '../organization';
 import { Account } from '../../account';
 import { Subscription } from 'rxjs';
-import { Lipsum } from '../../../lispum.service';
 
 @Component({
     templateUrl: './portfolio.component.html'
@@ -16,8 +15,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     private sub: Subscription;
 
     constructor(private route: ActivatedRoute,
-                private repository: TransactionRepository,
-                public lipsum: Lipsum) {
+                private repository: TransactionRepository) {
     }
 
     ngOnInit() {

@@ -3,12 +3,12 @@ import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { AccountResolve } from './account-resolve.service';
 import { AccountRepository } from './account-repository';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared-module';
 
 @NgModule({
     imports: [
         AccountRoutingModule,
-        CommonModule
+        SharedModule
     ],
     declarations: [
         AccountComponent,

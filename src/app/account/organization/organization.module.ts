@@ -3,12 +3,12 @@ import { OrganizationRoutingModule } from './organization-routing.module';
 import { OrganizationComponent } from './organization.component';
 import { OrganizationResolve } from './organization-resolve.service';
 import { OrganizationRepository } from './organization-repository.service';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared-module';
 
 @NgModule({
     imports: [
         OrganizationRoutingModule,
-        CommonModule
+        SharedModule
     ],
     declarations: [
         OrganizationComponent
