@@ -19,7 +19,7 @@ export class FilterResolve implements Resolve<Filter> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Filter> {
         let accountId = +route.params[ ACCOUNT_ID ];
         let organizationId = +route.params[ ORGANIZATION_ID ];
-        let filterId = +route.queryParams[ FILTER_ID ];
+        let filterId = +route.params[ FILTER_ID ];
 
         return this.accountRepository.findAll()
             .map(accounts => accounts.find(account => account.id === accountId))
