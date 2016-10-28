@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from './account';
+import { AccountRepository } from './account-repository';
 
 @Component({
     templateUrl: './account.component.html'
@@ -9,17 +10,21 @@ import { Account } from './account';
 export class AccountComponent implements OnInit, OnDestroy {
 
     account: Account;
-    private sub: Subscription;
+    private accountSub: Subscription;
+    choices: Account[];
+    private choicesSub: Subscription;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute,
+                private repository: AccountRepository) {
     }
 
     ngOnInit() {
-        this.sub = this.route.data.subscribe((data: {account: Account}) => this.account = data.account);
+        this.accountSub = this.route.data.subscribe((data: {account: Account}) => this.account = data.account);
+        this.choicesSub = this.repository.findAll().subscribe(choices => this.choices = choices);
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        this.accountSub.unsubscribe();
     }
 
 }

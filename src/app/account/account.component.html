@@ -1,7 +1,23 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>Account: {{account?.name}}</h2>
+        <div class="row">
+
+            <div class="col-sm-8">
+                <h2 class="panel-title">Account: {{account?.name}}</h2>
+            </div>
+
+            <div class="col-sm-4">
+                <select class="pull-right">
+                    <option></option>
+                    <option *ngFor="let choice of choices" value="{{choice.id}}" [selected]="choice === account">
+                        {{choice.name}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
     </div>
+
     <div class="panel-body">
         <router-outlet></router-outlet>
     </div>
