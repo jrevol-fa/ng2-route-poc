@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 export class AccountRepository {
 
     private accounts: Account[] = [
-        { id: 123, name: 'My Kingdom' }
+        { id: 123, name: 'My Kingdom' },
+        { id: 456, name: 'My Empire' }
     ];
 
     findAll(): Observable<Account[]> {

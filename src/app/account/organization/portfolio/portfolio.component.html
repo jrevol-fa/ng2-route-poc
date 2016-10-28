@@ -1,5 +1,20 @@
-<h4>Portfolio</h4>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Portfolio</h4>
+    </div>
+    <div class="panel-body">
+        <p>{{lipsum.text}}</p>
+    </div>
 
-<ul>
-    <li *ngFor="let transaction of transactions">{{transaction.name}}</li>
-</ul>
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <th i18n>Id</th>
+            <th i18n>Name</th>
+        </tr>
+        <tr *ngFor="let transaction of transactions">
+            <td>{{transaction.id}}</td>
+            <td>{{transaction.name}}</td>
+        </tr>
+    </table>
+</div>

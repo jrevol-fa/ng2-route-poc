@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Lipsum } from './lispum.service';
 
 @NgModule({
     imports: [
@@ -15,7 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [
+        Lipsum
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {
