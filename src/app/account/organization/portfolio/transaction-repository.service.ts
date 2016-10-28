@@ -15,6 +15,6 @@ export class TransactionRepository {
     ];
 
     findAll(account: Account, organization: Organization, filter?: Filter): Observable<Transaction[]> {
-        return Observable.of(this.transactions);
+        return Observable.of(this.transactions).delay(100);
     }
 }

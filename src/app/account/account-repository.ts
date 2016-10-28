@@ -11,7 +11,7 @@ export class AccountRepository {
     ];
 
     findAll(): Observable<Account[]> {
-        return Observable.of(this.accounts);
+        return Observable.of(this.accounts).delay(100);
     }
 
 }

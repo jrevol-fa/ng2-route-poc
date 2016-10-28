@@ -12,6 +12,6 @@ export class OrganizationRepository {
     ];
 
     findAll(account: Account): Observable<Organization[]> {
-        return Observable.of(this.organizations);
+        return Observable.of(this.organizations).delay(100);
     }
 }

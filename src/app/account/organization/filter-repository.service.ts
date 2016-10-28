@@ -13,6 +13,6 @@ export class FilterRepository {
     ];
 
     findAll(account: Account, organization: Organization): Observable<Filter[]> {
-        return Observable.of(this.filters);
+        return Observable.of(this.filters).delay(100);
     }
 }

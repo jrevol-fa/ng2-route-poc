@@ -1,4 +1,4 @@
-<select class="pull-right">
+<select class="pull-right" (change)="select($event.target.value)">
     <option></option>
     <option *ngFor="let account of accounts" value="{{account.id}}" [selected]="account === current">
         {{account.name}}
