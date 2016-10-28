@@ -21,6 +21,6 @@ export class OrganizationResolve implements Resolve<Organization> {
         return this.accountRepository.findAll()
             .map(accounts => accounts.find(account => account.id === accountId))
             .flatMap(account => this.repository.findAll(account)
-                .map(organizations => organizations.find(organization => organization.id == organizationId)));
+                .map(organizations => organizations.find(organization => organization.id === organizationId)));
     }
 }
