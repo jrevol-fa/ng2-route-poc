@@ -7,12 +7,7 @@
             </div>
 
             <div class="col-sm-4">
-                <select class="pull-right">
-                    <option></option>
-                    <option *ngFor="let choice of choices" value="{{choice.id}}" [selected]="choice === account">
-                        {{choice.name}}
-                    </option>
-                </select>
+                <app-account-select [current]="account"></app-account-select>
             </div>
 
         </div>

@@ -4,6 +4,7 @@ import { AccountComponent } from './account.component';
 import { AccountResolve } from './account-resolve.service';
 import { AccountRepository } from './account-repository';
 import { SharedModule } from '../shared/shared-module';
+import { AccountSelectComponent } from './account-select.component';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import { SharedModule } from '../shared/shared-module';
     ],
     declarations: [
         AccountComponent,
+        AccountSelectComponent
     ],
     providers: [
         AccountRepository,

@@ -1,0 +1,6 @@
+<select class="pull-right">
+    <option></option>
+    <option *ngFor="let account of accounts" value="{{account.id}}" [selected]="account === current">
+        {{account.name}}
+    </option>
+</select>
