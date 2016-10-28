@@ -9,7 +9,7 @@ const routes: Routes = [
         path: `:${ORGANIZATION_ID}`,
         component: OrganizationComponent,
         resolve: {
-            account: OrganizationResolve
+            organization: OrganizationResolve
         },
         children: [
             {

@@ -15,6 +15,7 @@ export class OrganizationResolve implements Resolve<Organization> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Organization> {
         let organizationId = +route.params[ ORGANIZATION_ID ];
         let account = route.data[ 'account' ] as Account;
-        return this.repository.findAll(account).map(organizations => organizations.find(organization => organization.id == organizationId));
+        return this.repository.findAll(account)
+            .map(organizations => organizations.find(organization => organization.id == organizationId));
     }
 }

@@ -9,7 +9,7 @@ import { AccountRepository } from './account-repository';
         AccountRoutingModule
     ],
     declarations: [
-        AccountComponent
+        AccountComponent,
     ],
     providers: [
         AccountRepository,
