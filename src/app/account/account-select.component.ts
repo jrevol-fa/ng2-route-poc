@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Account } from './account';
 import { AccountRepository } from './account-repository';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-account-select',
@@ -17,7 +17,6 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
     private accountsSub: Subscription;
 
     constructor(private repository: AccountRepository,
-                private route: ActivatedRoute,
                 private router: Router) {
     }
 

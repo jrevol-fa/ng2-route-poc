@@ -10,6 +10,7 @@ import { Account } from '../account';
 })
 export class OrganizationComponent implements OnInit, OnDestroy {
 
+    account: Account;
     organization: Organization;
     private organizationSub: Subscription;
     choices: Organization[];
@@ -21,8 +22,8 @@ export class OrganizationComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.organizationSub = this.route.data.subscribe((data: {organization: Organization}) => this.organization = data.organization);
-        let account = this.route.snapshot.data[ 'account' ] as Account;
-        this.choicesSub = this.repository.findAll(account).subscribe(choices => this.choices = choices);
+        this.account = this.route.snapshot.data[ 'account' ] as Account;
+        this.choicesSub = this.repository.findAll(this.account).subscribe(choices => this.choices = choices);
     }
 
     ngOnDestroy() {
