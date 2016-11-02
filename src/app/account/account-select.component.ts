@@ -29,6 +29,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
     }
 
     select(accountId: number) {
+        console.log(`${this.router.routerState.snapshot.url}`);
         console.log(`account:${accountId}, route: ${this.router.routerState}`);
     }
 
