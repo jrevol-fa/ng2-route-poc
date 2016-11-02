@@ -3,6 +3,7 @@ import { Organization } from './organization';
 import { Subscription } from 'rxjs';
 import { OrganizationRepository } from './organization-repository.service';
 import { Account } from '../account';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-organization-select',
@@ -19,7 +20,8 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
     organizations: Organization[];
     private organizationsSub: Subscription;
 
-    constructor(private repository: OrganizationRepository) {
+    constructor(private repository: OrganizationRepository,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -29,6 +31,21 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.organizationsSub.unsubscribe();
+    }
+
+    select(organizationId: number) {
+        let relativeTo = this.router.routerState.root.firstChild;
+        while (relativeTo && relativeTo.routeConfig.path !== 'organization') {
+            relativeTo = relativeTo.firstChild;
+        }
+        let path: any[] = [ organizationId ];
+        let current = relativeTo.firstChild.firstChild;
+        while (current) {
+            path.push(...current.snapshot.url.map(segment => segment.path));
+            current = current.firstChild;
+        }
+        console.log(path);
+        this.router.navigate(path, { relativeTo: relativeTo });
     }
 
 }
