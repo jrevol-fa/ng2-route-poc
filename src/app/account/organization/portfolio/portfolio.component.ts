@@ -5,11 +5,17 @@ import { Transaction } from './transaction';
 import { Organization } from '../organization';
 import { Account } from '../../account';
 import { Subscription } from 'rxjs';
+import { Filter } from '../filter';
 
 @Component({
     templateUrl: './portfolio.component.html'
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
+
+    account: Account;
+    organization: Organization;
+    filter: Filter;
+    private dataSub: Subscription;
 
     transactions: Transaction[];
     private transactionsSub: Subscription;
@@ -19,6 +25,12 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.dataSub = this.route.data
+            .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
+                this.account = data.account;
+                this.organization = data.organization;
+                this.filter = data.filter;
+            });
         this.transactionsSub = this.route.data
             .flatMap((data: {account: Account, organization: Organization}) =>
                 this.repository.findAll(data.account, data.organization))
@@ -26,6 +38,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.dataSub.unsubscribe();
         this.transactionsSub.unsubscribe();
     }
 

@@ -3,10 +3,12 @@ import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { PortfolioComponent } from './portfolio.component';
 import { TransactionRepository } from './transaction-repository.service';
 import { SharedModule } from '../../../shared/shared-module';
+import { OrganizationModule } from '../organization.module';
 
 @NgModule({
     imports: [
         PortfolioRoutingModule,
+        OrganizationModule,
         SharedModule
     ],
     declarations: [

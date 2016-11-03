@@ -7,6 +7,7 @@ import { SharedModule } from '../../shared/shared-module';
 import { FilterRepository } from './filter-repository.service';
 import { FilterResolve } from './filter-resolve.service';
 import { OrganizationSelectComponent } from './organization-select.component';
+import { FilterSelectComponent } from './filter-select.component';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { OrganizationSelectComponent } from './organization-select.component';
         SharedModule
     ],
     declarations: [
+        FilterSelectComponent,
         OrganizationComponent,
         OrganizationSelectComponent
     ],
@@ -22,6 +24,9 @@ import { OrganizationSelectComponent } from './organization-select.component';
         FilterResolve,
         OrganizationRepository,
         OrganizationResolve
+    ],
+    exports: [
+        FilterSelectComponent
     ]
 })
 export class OrganizationModule {

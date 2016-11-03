@@ -10,8 +10,8 @@ const routes: Routes = [
         path: `:${ORGANIZATION_ID}`,
         component: OrganizationComponent,
         resolve: {
-            organization: OrganizationResolve,
-            filter: FilterResolve
+            filter: FilterResolve,
+            organization: OrganizationResolve
         },
         children: [
             {

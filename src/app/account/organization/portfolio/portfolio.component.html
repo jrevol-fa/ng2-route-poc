@@ -1,6 +1,19 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">Portfolio</h4>
+        <div class="row">
+
+            <div class="col-sm-8">
+                <h4 class="panel-title" i18n>Portfolio: {{filter?.name}}</h4>
+            </div>
+
+            <div class="col-sm-4">
+                <app-filter-select [current]="filter"
+                                   [account]="account"
+                                   [organization]="organization">
+                </app-filter-select>
+            </div>
+
+        </div>
     </div>
 
     <div class="panel-body">
