@@ -34,17 +34,9 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
     }
 
     select(organizationId: number) {
-        let relativeTo = this.router.routerState.root.firstChild;
-        while (relativeTo && relativeTo.routeConfig.path !== 'organization') {
-            relativeTo = relativeTo.firstChild;
-        }
-        let path: any[] = [ organizationId ];
-        let current = relativeTo.firstChild.firstChild;
-        while (current) {
-            path.push(...current.snapshot.url.map(segment => segment.path));
-            current = current.firstChild;
-        }
-        this.router.navigate(path, { relativeTo: relativeTo });
+        const tree = this.router.parseUrl(this.router.url);
+        tree.root.children[ 'primary' ].segments[ 3 ].path = organizationId.toString();
+        this.router.navigateByUrl(tree);
     }
 
 }

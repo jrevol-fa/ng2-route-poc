@@ -29,17 +29,9 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
     }
 
     select(accountId: number) {
-        let relativeTo = this.router.routerState.root.firstChild;
-        while (relativeTo && relativeTo.routeConfig.path !== 'account') {
-            relativeTo = relativeTo.firstChild;
-        }
-        let path: any[] = [ accountId ];
-        let current = relativeTo.firstChild.firstChild;
-        while (current) {
-            path.push(...current.snapshot.url.map(segment => segment.path));
-            current = current.firstChild;
-        }
-        this.router.navigate(path, { relativeTo: relativeTo });
+        const tree = this.router.parseUrl(this.router.url);
+        tree.root.children[ 'primary' ].segments[ 1 ].path = accountId.toString();
+        this.router.navigateByUrl(tree);
     }
 
 }
