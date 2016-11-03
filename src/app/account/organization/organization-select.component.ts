@@ -44,7 +44,6 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
             path.push(...current.snapshot.url.map(segment => segment.path));
             current = current.firstChild;
         }
-        console.log(path);
         this.router.navigate(path, { relativeTo: relativeTo });
     }
 

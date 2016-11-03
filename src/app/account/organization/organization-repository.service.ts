@@ -8,7 +8,7 @@ export class OrganizationRepository {
 
     private organizations: Organization[] = [
         { id: 123, name: 'My Castle' },
-        { id: 123, name: 'My Palace' }
+        { id: 456, name: 'My Palace' }
     ];
 
     findAll(account: Account): Observable<Organization[]> {
