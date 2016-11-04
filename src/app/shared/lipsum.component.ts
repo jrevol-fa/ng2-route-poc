@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Lipsum } from '../lipsum.service';
+import {Component} from "@angular/core";
+import {Lipsum} from "../lipsum.service";
 
 @Component({
-    selector: 'app-lipsum',
-    template: `{{lipsum.text}}`
+  selector: 'app-lipsum',
+  template: `{{lipsum.text}}`
 })
 export class LipsumComponent {
-    constructor(public lipsum: Lipsum) {
-    }
+  constructor(public lipsum: Lipsum) {
+  }
 }

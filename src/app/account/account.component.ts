@@ -1,25 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Account } from './account';
+import {Component, OnInit, OnDestroy} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
+import {Account} from "./account";
+import {AccountContext} from "./account-context.service";
 
 @Component({
-    templateUrl: './account.component.html'
+  templateUrl: './account.component.html'
 })
 export class AccountComponent implements OnInit, OnDestroy {
 
-    account: Account;
-    private accountSub: Subscription;
+  account: Account;
+  private accountSub: Subscription;
 
-    constructor(private route: ActivatedRoute) {
-    }
+  private dataSub: Subscription;
 
-    ngOnInit() {
-        this.accountSub = this.route.data.subscribe((data: {account: Account}) => this.account = data.account);
-    }
+  constructor(private route: ActivatedRoute,
+              private context: AccountContext) {
+  }
 
-    ngOnDestroy() {
-        this.accountSub.unsubscribe();
-    }
+  ngOnInit() {
+    this.dataSub = this.route.data.subscribe(this.context.observeData);
+    this.accountSub = this.context.account$.subscribe(account => this.account = account);
+  }
+
+  ngOnDestroy() {
+    this.accountSub.unsubscribe();
+    this.dataSub.unsubscribe();
+  }
 
 }
