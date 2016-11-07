@@ -1,6 +1,6 @@
 import {OnInit, OnDestroy, Component, Input} from "@angular/core";
 import {Organization} from "./organization";
-import {Subscription} from "rxjs";
+import {Subscription, Observable} from "rxjs";
 import {OrganizationRepository} from "./organization-repository.service";
 import {Account} from "../account";
 import {Router} from "@angular/router";
@@ -12,13 +12,13 @@ import {Router} from "@angular/router";
 export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
   @Input()
-  account: Account;
+  account: Observable<Account>;
 
   @Input()
   current: Organization;
 
   organizations: Organization[];
-  
+
   private subs: Subscription[] = [];
 
   constructor(private repository: OrganizationRepository,
@@ -27,7 +27,8 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.push(
-      this.repository.findAll(this.account).subscribe(organizations => this.organizations = organizations)
+      this.account.flatMap(account => this.repository.findAll(account))
+        .subscribe(organizations => this.organizations = organizations)
     );
   }
 
