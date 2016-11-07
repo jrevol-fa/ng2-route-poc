@@ -9,6 +9,7 @@ import {FilterResolve} from "./filter-resolve.service";
 import {OrganizationSelectComponent} from "./organization-select.component";
 import {FilterSelectComponent} from "./filter-select.component";
 import {OrganizationContext} from "./organization-context.service";
+import {FilterContext} from "./filter-context.service";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {OrganizationContext} from "./organization-context.service";
     OrganizationSelectComponent
   ],
   providers: [
+    FilterContext,
     FilterRepository,
     FilterResolve,
     OrganizationContext,
