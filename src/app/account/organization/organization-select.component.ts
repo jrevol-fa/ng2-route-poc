@@ -18,19 +18,21 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
   current: Organization;
 
   organizations: Organization[];
-  private organizationsSub: Subscription;
+  
+  private subs: Subscription[] = [];
 
   constructor(private repository: OrganizationRepository,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.organizationsSub = this.repository.findAll(this.account)
-      .subscribe(organizations => this.organizations = organizations);
+    this.subs.push(
+      this.repository.findAll(this.account).subscribe(organizations => this.organizations = organizations)
+    );
   }
 
   ngOnDestroy(): void {
-    this.organizationsSub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
   select(organizationId: number) {

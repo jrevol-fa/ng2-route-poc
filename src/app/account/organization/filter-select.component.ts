@@ -23,19 +23,20 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
   current: Filter;
 
   filters: Filter[];
-  private filtersSub: Subscription;
+  private subs: Subscription[] = [];
 
   constructor(private repository: FilterRepository,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.filtersSub = this.repository.findAll(this.account, this.organization)
-      .subscribe(filters => this.filters = filters);
+    this.subs.push(
+      this.repository.findAll(this.account, this.organization).subscribe(filters => this.filters = filters)
+    );
   }
 
   ngOnDestroy() {
-    this.filtersSub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
   select(filterId: number) {

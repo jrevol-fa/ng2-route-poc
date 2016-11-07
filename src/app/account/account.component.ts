@@ -10,22 +10,21 @@ import {AccountContext} from "./account-context.service";
 export class AccountComponent implements OnInit, OnDestroy {
 
   account: Account;
-  private accountSub: Subscription;
-
-  private dataSub: Subscription;
+  private subs: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
               private context: AccountContext) {
   }
 
   ngOnInit() {
-    this.dataSub = this.route.data.subscribe(this.context.observeData);
-    this.accountSub = this.context.account$.subscribe(account => this.account = account);
+    this.subs.push(
+      this.route.data.subscribe(this.context.observeData),
+      this.context.account$.subscribe(account => this.account = account)
+    );
   }
 
   ngOnDestroy() {
-    this.accountSub.unsubscribe();
-    this.dataSub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }

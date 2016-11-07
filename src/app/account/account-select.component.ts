@@ -14,18 +14,20 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
   current: Account;
 
   accounts: Account[];
-  private accountsSub: Subscription;
+  private subs: Subscription[] = [];
 
   constructor(private repository: AccountRepository,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.accountsSub = this.repository.findAll().subscribe(accounts => this.accounts = accounts);
+    this.subs.push(
+      this.repository.findAll().subscribe(accounts => this.accounts = accounts)
+    );
   }
 
   ngOnDestroy() {
-    this.accountsSub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
   select(accountId: number) {

@@ -15,31 +15,31 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   account: Account;
   organization: Organization;
   filter: Filter;
-  private dataSub: Subscription;
 
   transactions: Transaction[];
-  private transactionsSub: Subscription;
+  private subs: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
               private repository: TransactionRepository) {
   }
 
   ngOnInit() {
-    this.dataSub = this.route.data
-      .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
-        this.account = data.account;
-        this.organization = data.organization;
-        this.filter = data.filter;
-      });
-    this.transactionsSub = this.route.data
-      .flatMap((data: {account: Account, organization: Organization}) =>
-        this.repository.findAll(data.account, data.organization))
-      .subscribe(transactions => this.transactions = transactions);
+    this.subs.push(
+      this.route.data
+        .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
+          this.account = data.account;
+          this.organization = data.organization;
+          this.filter = data.filter;
+        }),
+      this.route.data
+        .flatMap((data: {account: Account, organization: Organization}) =>
+          this.repository.findAll(data.account, data.organization))
+        .subscribe(transactions => this.transactions = transactions)
+    );
   }
 
   ngOnDestroy() {
-    this.dataSub.unsubscribe();
-    this.transactionsSub.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }
