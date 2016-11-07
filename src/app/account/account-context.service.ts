@@ -1,14 +1,17 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
-import {Account} from "./account";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Account} from './account';
 
 @Injectable()
 export class AccountContext {
 
-  private subject: Subject<Account> = new BehaviorSubject<Account>(null);
+  account$: Observable<Account>;
 
-  get account$(): Observable<Account> {
-    return this.subject.asObservable();
+  private subject: Subject<Account>;
+
+  constructor() {
+    this.subject = new BehaviorSubject<Account>(null);
+    this.account$ = this.subject.asObservable();
   }
 
   observeData(data: {account: Account}) {

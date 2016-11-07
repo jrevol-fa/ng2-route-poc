@@ -1,15 +1,13 @@
-import {NgModule} from "@angular/core";
-import {OrganizationRoutingModule} from "./organization-routing.module";
-import {OrganizationComponent} from "./organization.component";
-import {OrganizationResolve} from "./organization-resolve.service";
-import {OrganizationRepository} from "./organization-repository.service";
-import {SharedModule} from "../../shared/shared-module";
-import {FilterRepository} from "./filter-repository.service";
-import {FilterResolve} from "./filter-resolve.service";
-import {OrganizationSelectComponent} from "./organization-select.component";
-import {FilterSelectComponent} from "./filter-select.component";
-import {OrganizationContext} from "./organization-context.service";
-import {FilterContext} from "./filter-context.service";
+import {NgModule} from '@angular/core';
+import {OrganizationRoutingModule} from './organization-routing.module';
+import {OrganizationComponent} from './organization.component';
+import {OrganizationResolve} from './organization-resolve.service';
+import {OrganizationRepository} from './organization-repository.service';
+import {SharedModule} from '../../shared/shared-module';
+import {FilterRepository} from './filter-repository.service';
+import {FilterResolve} from './filter-resolve.service';
+import {OrganizationSelectComponent} from './organization-select.component';
+import {FilterSelectComponent} from './filter-select.component';
 
 @NgModule({
   imports: [
@@ -22,10 +20,8 @@ import {FilterContext} from "./filter-context.service";
     OrganizationSelectComponent
   ],
   providers: [
-    FilterContext,
     FilterRepository,
     FilterResolve,
-    OrganizationContext,
     OrganizationRepository,
     OrganizationResolve
   ],

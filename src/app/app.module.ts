@@ -5,6 +5,9 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {Lipsum} from "./lipsum.service";
+import {AccountContext} from './account/account-context.service';
+import {FilterContext} from './account/organization/filter-context.service';
+import {OrganizationContext} from './account/organization/organization-context.service';
 
 @NgModule({
   imports: [
@@ -17,7 +20,10 @@ import {Lipsum} from "./lipsum.service";
     AppComponent
   ],
   providers: [
-    Lipsum
+    Lipsum,
+    AccountContext,
+    FilterContext,
+    OrganizationContext
   ],
   bootstrap: [AppComponent]
 })
