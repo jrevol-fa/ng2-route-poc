@@ -1,11 +1,13 @@
 import {Component, OnInit, OnDestroy} from "@angular/core";
 import {TransactionRepository} from "./transaction-repository.service";
-import {ActivatedRoute} from "@angular/router";
 import {Transaction} from "./transaction";
 import {Organization} from "../organization";
 import {Account} from "../../account";
 import {Subscription} from "rxjs";
 import {Filter} from "../filter";
+import {AccountContext} from "../../account-context.service";
+import {OrganizationContext} from "../organization-context.service";
+import {FilterContext} from "../filter-context.service";
 
 @Component({
   templateUrl: './portfolio.component.html'
@@ -19,21 +21,19 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   transactions: Transaction[];
   private subs: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute,
+  constructor(private accountCtx: AccountContext,
+              private organizationCtx: OrganizationContext,
+              private filterCtx: FilterContext,
               private repository: TransactionRepository) {
   }
 
   ngOnInit() {
     this.subs.push(
-      this.route.data
-        .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
-          this.account = data.account;
-          this.organization = data.organization;
-          this.filter = data.filter;
-        }),
-      this.route.data
-        .flatMap((data: {account: Account, organization: Organization}) =>
-          this.repository.findAll(data.account, data.organization))
+      this.accountCtx.account$.subscribe(account => this.account = account),
+      this.organizationCtx.organization$.subscribe(organization => this.organization = organization),
+      this.filterCtx.filter$.subscribe(filter => this.filter = filter),
+      this.organizationCtx.accountAndOrganization$
+        .flatMap(data => this.repository.findAll(data.account, data.organization))
         .subscribe(transactions => this.transactions = transactions)
     );
   }
