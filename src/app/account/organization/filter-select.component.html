@@ -1,6 +1,6 @@
 <select class="pull-right" (change)="select($event.target.value)">
-    <option></option>
-    <option *ngFor="let filter of filters" value="{{filter.id}}" [selected]="filter === current">
-        {{filter.name}}
-    </option>
+  <option></option>
+  <option *ngFor="let filter of filters" value="{{filter.id}}" [selected]="filter === current">
+    {{filter.name}}
+  </option>
 </select>

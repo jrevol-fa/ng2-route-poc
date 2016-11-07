@@ -1,33 +1,33 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="row">
+  <div class="panel-heading">
+    <div class="row">
 
-            <div class="col-sm-8">
-                <h4 class="panel-title" i18n>Portfolio: {{filter?.name}}</h4>
-            </div>
+      <div class="col-sm-8">
+        <h4 class="panel-title" i18n>Portfolio: {{filter?.name}}</h4>
+      </div>
 
-            <div class="col-sm-4">
-                <app-filter-select [current]="filter"
-                                   [account]="account"
-                                   [organization]="organization">
-                </app-filter-select>
-            </div>
+      <div class="col-sm-4">
+        <app-filter-select [current]="filter"
+                           [account]="account"
+                           [organization]="organization">
+        </app-filter-select>
+      </div>
 
-        </div>
     </div>
+  </div>
 
-    <div class="panel-body">
-        <app-lipsum></app-lipsum>
-    </div>
+  <div class="panel-body">
+    <app-lipsum></app-lipsum>
+  </div>
 
-    <table class="table">
-        <tr>
-            <th i18n>Id</th>
-            <th i18n>Name</th>
-        </tr>
-        <tr *ngFor="let transaction of transactions">
-            <td>{{transaction.id}}</td>
-            <td>{{transaction.name}}</td>
-        </tr>
-    </table>
+  <table class="table">
+    <tr>
+      <th i18n>Id</th>
+      <th i18n>Name</th>
+    </tr>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{transaction.id}}</td>
+      <td>{{transaction.name}}</td>
+    </tr>
+  </table>
 </div>
