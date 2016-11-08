@@ -1,11 +1,11 @@
-import {Component, Input, OnInit, OnDestroy} from "@angular/core";
-import {Filter} from "./filter";
-import {Subscription} from "rxjs";
-import {FilterRepository} from "./filter-repository.service";
-import {Router} from "@angular/router";
-import {Organization} from "./organization";
-import {Account} from "../account";
-import {FILTER_ID} from "./index";
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
+import {Filter} from './filter';
+import {Subscription, Observable} from 'rxjs';
+import {FilterRepository} from './filter-repository.service';
+import {Router} from '@angular/router';
+import {Organization} from './organization';
+import {Account} from '../account';
+import {FILTER_ID} from './index';
 
 @Component({
   selector: 'app-filter-select',
@@ -14,10 +14,7 @@ import {FILTER_ID} from "./index";
 export class FilterSelectComponent implements OnInit, OnDestroy {
 
   @Input()
-  account: Account;
-
-  @Input()
-  organization: Organization;
+  accountAndOrganization: Observable<{account: Account, organization: Organization}>;
 
   @Input()
   current: Filter;
@@ -31,7 +28,9 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.repository.findAll(this.account, this.organization).subscribe(filters => this.filters = filters)
+      this.accountAndOrganization
+        .flatMap((data: {account: Account, organization: Organization}) => this.repository.findAll(data.account, data.organization))
+        .subscribe(filters => this.filters = filters)
     );
   }
 

@@ -3,7 +3,7 @@ import {TransactionRepository} from './transaction-repository.service';
 import {Transaction} from './transaction';
 import {Organization} from '../organization';
 import {Account} from '../../account';
-import {Subscription} from 'rxjs';
+import {Subscription, Observable} from 'rxjs';
 import {Filter} from '../filter';
 import {PortfolioContext} from './portfolio-context.service';
 
@@ -25,19 +25,25 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.ctx.data$.subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
-        this.account = data.account;
-        this.organization = data.organization;
-        this.filter = data.filter;
-      }),
       this.ctx.data$
-        .flatMap(data => this.repository.findAll(data.account, data.organization, data.filter))
+        .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
+          this.account = data.account;
+          this.organization = data.organization;
+          this.filter = data.filter;
+        }),
+      this.ctx.data$
+        .flatMap((data: {account: Account, organization: Organization, filter: Filter}) =>
+          this.repository.findAll(data.account, data.organization, data.filter))
         .subscribe(transactions => this.transactions = transactions)
     );
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
+  }
+
+  get accountAndOrganization$(): Observable<{account: Account, organization: Organization}> {
+    return this.ctx.data$;
   }
 
 }

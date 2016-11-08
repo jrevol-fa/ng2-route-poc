@@ -7,10 +7,7 @@
       </div>
 
       <div class="col-sm-4">
-        <app-filter-select [current]="filter"
-                           [account]="account"
-                           [organization]="organization">
-        </app-filter-select>
+        <app-filter-select [accountAndOrganization]="accountAndOrganization$" [current]="filter"></app-filter-select>
       </div>
 
     </div>
