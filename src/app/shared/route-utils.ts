@@ -1,4 +1,4 @@
-import {ActivatedRouteSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot} from '@angular/router';
 
 export class RouteUtils {
   static extractData(route: ActivatedRouteSnapshot, key: string): any | undefined {

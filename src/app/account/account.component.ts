@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs";
-import {Account} from "./account";
-import {AccountContext} from "./account-context.service";
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {Account} from './account';
+import {AccountContext} from './account-context.service';
 
 @Component({
   templateUrl: './account.component.html'

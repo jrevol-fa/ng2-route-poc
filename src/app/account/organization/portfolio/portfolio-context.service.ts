@@ -20,7 +20,7 @@ export class PortfolioContext {
       this.organizationCtx.data$,
       this.filterCtx.data$,
       (account, organization, filter) => {
-        return {account: account, organization: organization, filter: filter}
+        return {account: account, organization: organization, filter: filter};
       }
     );
   }

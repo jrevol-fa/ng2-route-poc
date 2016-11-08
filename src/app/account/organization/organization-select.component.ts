@@ -1,9 +1,9 @@
-import {OnInit, OnDestroy, Component, Input} from "@angular/core";
-import {Organization} from "./organization";
-import {Subscription, Observable} from "rxjs";
-import {OrganizationRepository} from "./organization-repository.service";
-import {Account} from "../account";
-import {Router} from "@angular/router";
+import {OnInit, OnDestroy, Component, Input} from '@angular/core';
+import {Organization} from './organization';
+import {Subscription, Observable} from 'rxjs';
+import {OrganizationRepository} from './organization-repository.service';
+import {Account} from '../account';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-organization-select',

@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {LipsumComponent} from "./lipsum.component";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LipsumComponent} from './lipsum.component';
 
 @NgModule({
   imports: [CommonModule],
