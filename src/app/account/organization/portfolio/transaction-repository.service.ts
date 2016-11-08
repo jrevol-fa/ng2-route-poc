@@ -15,7 +15,7 @@ export class TransactionRepository {
   ];
 
   findAll(account: Account, organization: Organization, filter: Filter): Observable<Transaction[]> {
-    console.log(`Find all transactions for account: ${JSON.stringify(account)}, organization: ${JSON.stringify(organization)} and filter: ${JSON.stringify(filter)}`);
+//  console.log(`Find all transactions for account: ${JSON.stringify(account)}, organization: ${JSON.stringify(organization)} and filter: ${JSON.stringify(filter)}`);
     return Observable.of(this.transactions).delay(100);
   }
 }

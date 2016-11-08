@@ -1,21 +1,26 @@
 import {Injectable} from '@angular/core';
 import {Account} from './account';
 import {Observable} from 'rxjs';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class AccountRepository {
 
-  private accounts: Account[] = [
-    {id: 123, name: 'My Kingdom'},
-    {id: 456, name: 'My Empire'}
-  ];
+  constructor(private http: Http) {
+  }
 
   findAll(): Observable<Account[]> {
-    return Observable.of(this.accounts).delay(100);
+    return this.http.get('./assets/data.json')
+      .map(res => res.json().accounts)
+      .map(accs => accs as Account[]);
   }
 
   findOne(id: number): Observable<Account> {
-    return Observable.of(this.accounts).delay(100).map(accounts => accounts.find(account => account.id === id));
+    return this.http.get('./assets/data.json')
+      .map(res => res.json().accounts)
+      .filter(accs => accs)
+      .map(accs => accs.find(acc => acc.id === id))
+      .map(acc => acc as Account);
   }
 
 }

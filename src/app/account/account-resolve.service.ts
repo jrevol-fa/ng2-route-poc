@@ -13,10 +13,6 @@ export class AccountResolve implements Resolve<Account> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Account> {
     let accountId = +route.params[ACCOUNT_ID];
-    return this.repository.findOne(accountId)
-      .map(account => {
-        console.log(`Resolved account ${JSON.stringify(account)}`);
-        return account;
-      });
+    return this.repository.findOne(accountId);
   }
 }

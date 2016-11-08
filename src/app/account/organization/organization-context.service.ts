@@ -16,6 +16,7 @@ export class OrganizationContext {
   }
 
   observeData(data: {organization: Organization}) {
+    console.log(`Found ${JSON.stringify(data.organization)}`)
     this.subject.next(data.organization);
   }
 

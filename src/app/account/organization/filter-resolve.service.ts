@@ -21,11 +21,7 @@ export class FilterResolve implements Resolve<Filter> {
     let filterId = +route.params[FILTER_ID];
 
     return this.organizationRepository.findOne(account, organizationId)
-      .flatMap(organization => this.repository.findOne(account, organization, filterId))
-      .map(filter => {
-        console.log(`Resolved filter: ${JSON.stringify(filter)}`);
-        return filter;
-      });
+      .flatMap(organization => this.repository.findOne(account, organization, filterId));
   }
 
 }

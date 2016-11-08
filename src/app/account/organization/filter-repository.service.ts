@@ -3,22 +3,40 @@ import {Filter} from './filter';
 import {Observable} from 'rxjs';
 import {Organization} from './organization';
 import {Account} from '../account';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class FilterRepository {
 
-  private filters: Filter[] = [
-    {id: 123, name: 'My loans'},
-    {id: 456, name: 'My derivatives'}
-  ];
+  constructor(private http: Http) {
+  }
 
   findAll(account: Account, organization: Organization): Observable<Filter[]> {
-    console.log(`Find all filters for account: ${JSON.stringify(account)} and organization: ${JSON.stringify(organization)}`);
-    return Observable.of(this.filters).delay(100);
+    return this.http.get('./assets/data.json')
+      .map(res => res.json().accounts)
+      .filter(accs => accs)
+      .map(accs => accs.find(acc => acc.id === account.id))
+      .filter(acc => acc)
+      .map(acc => acc.organizations)
+      .filter(orgs => orgs)
+      .map(orgs => orgs.find(org => org.id === organization.id))
+      .filter(org => org)
+      .map(org => org.filters)
+      .map(fils => fils as Filter[]);
   }
 
   findOne(account: Account, organization: Organization, id: number) {
-    console.log(`Find one filter for account: ${JSON.stringify(account)}, organization: ${JSON.stringify(organization)} and id: ${id}`);
-    return Observable.of(this.filters).delay(100).map(filters => filters.find(filter => filter.id === id));
+    return this.http.get('./assets/data.json')
+      .map(res => res.json().accounts)
+      .filter(accs => accs)
+      .map(accs => accs.find(acc => acc.id === account.id))
+      .filter(acc => acc)
+      .map(acc => acc.organizations)
+      .filter(orgs => orgs)
+      .map(orgs => orgs.find(org => org.id === organization.id))
+      .filter(org => org)
+      .map(org => org.filters)
+      .find(fils => fils.find(fil => fil.id === id))
+      .map(fil => fil as Filter);
   }
 }

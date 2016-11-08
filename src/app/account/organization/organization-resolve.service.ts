@@ -17,10 +17,6 @@ export class OrganizationResolve implements Resolve<Organization> {
     let account = RouteUtils.extractData(route, DATA_ACCOUNT);
     let organizationId = +route.params[ORGANIZATION_ID];
 
-    return this.repository.findOne(account, organizationId)
-      .map(organization => {
-        console.log(`Resolved organization: ${JSON.stringify(organization)}`);
-        return organization;
-      });
+    return this.repository.findOne(account, organizationId);
   }
 }
