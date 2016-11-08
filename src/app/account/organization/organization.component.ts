@@ -27,7 +27,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.route.data.subscribe((data: {organization: Organization}) => this.organizationCtx.observeData(data)),
       this.route.data.subscribe((data: {filter: Filter}) => this.filterCtx.observeData(data)),
-      this.organizationCtx.organization$.subscribe(organization => this.organization = organization)
+      this.organizationCtx.data$.subscribe(organization => this.organization = organization)
     );
   }
 
@@ -36,7 +36,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   get account$(): Observable<Account> {
-    return this.accountCtx.account$;
+    return this.accountCtx.data$;
   }
 
 }

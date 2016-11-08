@@ -5,13 +5,13 @@ import {Account} from './account';
 @Injectable()
 export class AccountContext {
 
-  account$: Observable<Account>;
+  data$: Observable<Account>;
 
   private subject: Subject<Account>;
 
   constructor() {
     this.subject = new BehaviorSubject<Account>(null);
-    this.account$ = this.subject.asObservable();
+    this.data$ = this.subject.asObservable();
   }
 
   observeData(data: {account: Account}) {

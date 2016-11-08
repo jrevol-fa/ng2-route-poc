@@ -6,13 +6,13 @@ import 'rxjs/add/operator/combineLatest';
 @Injectable()
 export class OrganizationContext {
 
-  organization$: Observable<Organization>;
+  data$: Observable<Organization>;
 
   private subject: Subject<Organization>;
 
   constructor() {
     this.subject = new BehaviorSubject(null);
-    this.organization$ = this.subject.asObservable();
+    this.data$ = this.subject.asObservable();
   }
 
   observeData(data: {organization: Organization}) {

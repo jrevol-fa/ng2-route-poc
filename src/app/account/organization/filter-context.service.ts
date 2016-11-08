@@ -5,13 +5,13 @@ import {Filter} from './filter';
 @Injectable()
 export class FilterContext {
 
-  filter$: Observable<Filter>;
+  data$: Observable<Filter>;
 
   private subject: Subject<Filter>;
 
   constructor() {
     this.subject = new BehaviorSubject<Filter>(null);
-    this.filter$ = this.subject.asObservable();
+    this.data$ = this.subject.asObservable();
   }
 
   observeData(data: {filter: Filter}) {

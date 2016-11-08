@@ -19,7 +19,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.push(
       this.route.data.subscribe((data: {account: Account}) => this.context.observeData(data)),
-      this.context.account$.subscribe(account => this.account = account)
+      this.context.data$.subscribe(account => this.account = account)
     );
   }
 

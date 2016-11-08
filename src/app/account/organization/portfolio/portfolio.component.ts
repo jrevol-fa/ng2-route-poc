@@ -3,11 +3,9 @@ import {TransactionRepository} from './transaction-repository.service';
 import {Transaction} from './transaction';
 import {Organization} from '../organization';
 import {Account} from '../../account';
-import {Subscription, Observable} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Filter} from '../filter';
-import {FilterContext} from '../filter-context.service';
-import {AccountContext} from '../../account-context.service';
-import {OrganizationContext} from '../organization-context.service';
+import {PortfolioContext} from './portfolio-context.service';
 
 @Component({
   templateUrl: './portfolio.component.html'
@@ -21,18 +19,18 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   transactions: Transaction[];
   private subs: Subscription[] = [];
 
-  constructor(private accountCtx: AccountContext,
-              private organizationCtx: OrganizationContext,
-              private filterCtx: FilterContext,
+  constructor(private ctx: PortfolioContext,
               private repository: TransactionRepository) {
   }
 
   ngOnInit() {
     this.subs.push(
-      this.accountCtx.account$.subscribe(account => this.account = account),
-      this.organizationCtx.organization$.subscribe(organization => this.organization = organization),
-      this.filterCtx.filter$.subscribe(filter => this.filter = filter),
-      this.accountAndOrganizationAndFilter$
+      this.ctx.data$.subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
+        this.account = data.account;
+        this.organization = data.organization;
+        this.filter = data.filter;
+      }),
+      this.ctx.data$
         .flatMap(data => this.repository.findAll(data.account, data.organization, data.filter))
         .subscribe(transactions => this.transactions = transactions)
     );
@@ -40,17 +38,6 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
-  }
-
-  private get accountAndOrganizationAndFilter$(): Observable<{account: Account, organization: Organization, filter: Filter}> {
-    return Observable.combineLatest(
-      this.accountCtx.account$,
-      this.organizationCtx.organization$,
-      this.filterCtx.filter$,
-      (account, organization, filter) => {
-        return {account: account, organization: organization, filter: filter}
-      }
-    );
   }
 
 }
