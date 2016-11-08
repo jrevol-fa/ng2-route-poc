@@ -12,31 +12,29 @@ export class FilterRepository {
   }
 
   findAll(account: Account, organization: Organization): Observable<Filter[]> {
-    return this.http.get('./assets/data.json')
-      .map(res => res.json().accounts)
-      .filter(accs => accs)
-      .map(accs => accs.find(acc => acc.id === account.id))
-      .filter(acc => acc)
-      .map(acc => acc.organizations)
-      .filter(orgs => orgs)
-      .map(orgs => orgs.find(org => org.id === organization.id))
-      .filter(org => org)
-      .map(org => org.filters)
-      .map(fils => fils as Filter[]);
+    if (account && organization) {
+      return this.http.get('./assets/data.json')
+        .map(res => res.json().accounts)
+        .map(accs => accs ? accs.find(acc => acc.id === account.id) : undefined)
+        .map(acc => acc && acc.organizations ? acc.organizations : [])
+        .map(orgs => orgs.find(org => org.id === organization.id))
+        .map(org => org && org.filters ? org.filters : [])
+        .map(fils => fils as Filter[]);
+    }
+    return Observable.of([]);
   }
 
   findOne(account: Account, organization: Organization, id: number) {
-    return this.http.get('./assets/data.json')
-      .map(res => res.json().accounts)
-      .filter(accs => accs)
-      .map(accs => accs.find(acc => acc.id === account.id))
-      .filter(acc => acc)
-      .map(acc => acc.organizations)
-      .filter(orgs => orgs)
-      .map(orgs => orgs.find(org => org.id === organization.id))
-      .filter(org => org)
-      .map(org => org.filters)
-      .map(fils => fils.find(fil => fil.id === id))
-      .map(fil => fil as Filter);
+    if (account && organization && id) {
+      return this.http.get('./assets/data.json')
+        .map(res => res.json().accounts)
+        .map(accs => accs ? accs.find(acc => acc.id === account.id) : undefined)
+        .map(acc => acc && acc.organizations ? acc.organizations : [])
+        .map(orgs => orgs.find(org => org.id === organization.id))
+        .map(org => org && org.filters ? org.filters : [])
+        .map(fils => fils.find(fil => fil.id === id))
+        .map(fil => fil as Filter);
+    }
+    return Observable.of(undefined);
   }
 }

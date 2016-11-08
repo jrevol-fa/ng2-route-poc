@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Account} from './account';
+import {AccountRepository} from './account-repository';
 
 @Injectable()
 export class AccountContext {
 
   data$: Observable<Account>;
 
-  private subject: Subject<Account>;
+  private subject: Subject<number>;
 
-  constructor() {
-    this.subject = new BehaviorSubject<Account>(null);
-    this.data$ = this.subject.asObservable();
+  constructor(repository: AccountRepository) {
+    this.subject = new BehaviorSubject(null);
+    this.data$ = this.subject.asObservable().flatMap(id => repository.findOne(id));
   }
 
-  observeData(data: {account: Account}) {
-    this.subject.next(data.account);
+  observeId(accountId: number) {
+    this.subject.next(accountId);
   }
 
 }

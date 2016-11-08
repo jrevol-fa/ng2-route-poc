@@ -8,6 +8,9 @@ import {Lipsum} from './lipsum.service';
 import {AccountContext} from './account/account-context.service';
 import {FilterContext} from './account/organization/filter-context.service';
 import {OrganizationContext} from './account/organization/organization-context.service';
+import {AccountRepository} from './account/account-repository';
+import {FilterRepository} from './account/organization/filter-repository.service';
+import {OrganizationRepository} from './account/organization/organization-repository.service';
 
 @NgModule({
   imports: [
@@ -22,8 +25,11 @@ import {OrganizationContext} from './account/organization/organization-context.s
   providers: [
     Lipsum,
     AccountContext,
+    AccountRepository,
     FilterContext,
-    OrganizationContext
+    FilterRepository,
+    OrganizationContext,
+    OrganizationRepository
   ],
   bootstrap: [AppComponent]
 })

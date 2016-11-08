@@ -16,11 +16,13 @@ export class AccountRepository {
   }
 
   findOne(id: number): Observable<Account> {
-    return this.http.get('./assets/data.json')
-      .map(res => res.json().accounts)
-      .filter(accs => accs)
-      .map(accs => accs.find(acc => acc.id === id))
-      .map(acc => acc as Account);
+    if (id) {
+      return this.http.get('./assets/data.json')
+        .map(res => res.json().accounts)
+        .map(accs => accs ? accs.find(acc => acc.id === id) : undefined)
+        .map(acc => acc as Account);
+    }
+    return Observable.of(undefined);
   }
 
 }

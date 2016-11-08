@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Account} from './account';
 import {AccountContext} from './account-context.service';
+import {ACCOUNT_ID} from './index';
 
 @Component({
   templateUrl: './account.component.html'
@@ -18,7 +19,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.route.data.subscribe((data: {account: Account}) => this.context.observeData(data)),
+      this.route.params.subscribe(params => this.context.observeId(+params[ACCOUNT_ID])),
       this.context.data$.subscribe(account => this.account = account)
     );
   }

@@ -2,22 +2,33 @@ import {Injectable} from '@angular/core';
 import {Organization} from './organization';
 import {Subject, BehaviorSubject, Observable} from 'rxjs';
 import 'rxjs/add/operator/combineLatest';
+import {AccountContext} from '../account-context.service';
+import {Account} from '../account';
+import {OrganizationRepository} from './organization-repository.service';
 
 @Injectable()
 export class OrganizationContext {
 
   data$: Observable<Organization>;
 
-  private subject: Subject<Organization>;
+  private subject: Subject<number>;
 
-  constructor() {
+  constructor(accountCtx: AccountContext,
+              repository: OrganizationRepository) {
     this.subject = new BehaviorSubject(null);
-    this.data$ = this.subject.asObservable();
+
+    this.data$ = Observable.combineLatest(
+      accountCtx.data$,
+      this.subject.asObservable(),
+      (account: Account, id: number) => {
+        return {account: account, orgId: id};
+      }
+    ).flatMap((data: {account: Account, orgId: number}) =>
+      repository.findOne(data.account, data.orgId));
   }
 
-  observeData(data: {organization: Organization}) {
-    console.log(`Found ${JSON.stringify(data.organization)}`);
-    this.subject.next(data.organization);
+  observeId(orgId: number) {
+    this.subject.next(orgId);
   }
 
 }

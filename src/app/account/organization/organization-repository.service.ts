@@ -11,25 +11,26 @@ export class OrganizationRepository {
   }
 
   findAll(account: Account): Observable<Organization[]> {
-    return this.http.get('./assets/data.json')
-      .map(res => res.json().accounts)
-      .filter(accs => accs)
-      .map(accs => accs.find(acc => acc.id === account.id))
-      .filter(acc => acc)
-      .map(acc => acc.organizations)
-      .map(orgs => orgs as Organization[]);
+    if (account) {
+      return this.http.get('./assets/data.json')
+        .map(res => res.json().accounts)
+        .map(accs => accs ? accs.find(acc => acc.id === account.id) : undefined)
+        .map(acc => acc && acc.organizations ? acc.organizations : [])
+        .map(orgs => orgs as Organization[]);
+    }
+    return Observable.of([]);
   }
 
   findOne(account: Account, id: number): Observable<Organization> {
-    return this.http.get('./assets/data.json')
-      .map(res => res.json().accounts)
-      .filter(accs => accs)
-      .map(accs => accs.find(acc => acc.id === account.id))
-      .filter(acc => acc)
-      .map(acc => acc.organizations)
-      .filter(orgs => orgs)
-      .map(acc => acc.find(org => org.id === id))
-      .map(org => org as Organization);
+    if (account && id) {
+      return this.http.get('./assets/data.json')
+        .map(res => res.json().accounts)
+        .map(accs => accs ? accs.find(acc => acc.id === account.id) : undefined)
+        .map(acc => acc && acc.organizations ? acc.organizations : [])
+        .map(orgs => orgs.find(org => org.id === id))
+        .map(org => org as Organization);
+    }
+    return Observable.of(undefined);
   }
 
 }
