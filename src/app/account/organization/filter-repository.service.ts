@@ -36,7 +36,7 @@ export class FilterRepository {
       .map(orgs => orgs.find(org => org.id === organization.id))
       .filter(org => org)
       .map(org => org.filters)
-      .find(fils => fils.find(fil => fil.id === id))
+      .map(fils => fils.find(fil => fil.id === id))
       .map(fil => fil as Filter);
   }
 }
