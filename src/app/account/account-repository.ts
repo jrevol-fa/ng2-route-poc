@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {Account} from "./account";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Account} from './account';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class AccountRepository {
@@ -12,6 +12,10 @@ export class AccountRepository {
 
   findAll(): Observable<Account[]> {
     return Observable.of(this.accounts).delay(100);
+  }
+
+  findOne(id: number): Observable<Account> {
+    return Observable.of(this.accounts).delay(100).map(accounts => accounts.find(account => account.id === id));
   }
 
 }
