@@ -1,0 +1,76 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "name": "My Kingdom",
+      "organizations": [
+        {
+          "id": 11,
+          "name": "My Castle",
+          "filters": [
+            {
+              "id": 111,
+              "name": "My Loans"
+            },
+            {
+              "id": 112,
+              "name": "My Derivatives"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "My Stronghold",
+          "filters": [
+            {
+              "id": 121,
+              "name": "My Swaps"
+            },
+            {
+              "id": 122,
+              "name": "My Facilities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "My Empire",
+      "organizations": [
+        {
+          "id": 21,
+          "name": "My Palace",
+          "filters": [
+            {
+              "id": 211,
+              "name": "My Loans"
+            },
+            {
+              "id": 212,
+              "name": "My Swaps"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "My City",
+          "filters": [
+            {
+              "id": 221,
+              "name": "My Caps"
+            },
+            {
+              "id": 222,
+              "name": "My Floors"
+            },
+            {
+              "id": 223,
+              "name": "My Collars"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
