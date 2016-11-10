@@ -22,7 +22,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.repository.findAll().subscribe(accounts => this.accounts = accounts)
+      this.repository.findAll().subscribe(accs => this.accounts = accs)
     );
   }
 

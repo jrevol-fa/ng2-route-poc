@@ -40,7 +40,11 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
 
   select(filterId: number) {
     const tree = this.router.parseUrl(this.router.url);
-    tree.root.children['primary'].segments[3].parameters[FILTER_ID] = filterId.toString();
+    if (filterId) {
+      tree.root.children['primary'].segments[3].parameters[FILTER_ID] = filterId.toString();
+    } else {
+      delete tree.root.children['primary'].segments[3].parameters[FILTER_ID];
+    }
     this.router.navigateByUrl(tree);
   }
 

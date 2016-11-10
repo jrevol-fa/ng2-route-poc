@@ -27,8 +27,8 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs.push(
-      this.account.flatMap(account => this.repository.findAll(account))
-        .subscribe(organizations => this.organizations = organizations)
+      this.account.flatMap(acc => this.repository.findAll(acc))
+        .subscribe(orgs => this.organizations = orgs)
     );
   }
 

@@ -14,13 +14,13 @@ export class AccountComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
-              private context: AccountContext) {
+              private ctx: AccountContext) {
   }
 
   ngOnInit() {
     this.subs.push(
-      this.route.params.subscribe(params => this.context.observeId(+params[ACCOUNT_ID])),
-      this.context.data$.subscribe(account => this.account = account)
+      this.route.params.subscribe(params => this.ctx.observeId(+params[ACCOUNT_ID])),
+      this.ctx.data$.subscribe(account => this.account = account)
     );
   }
 
