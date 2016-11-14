@@ -32,7 +32,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
 
   select(accountId: number) {
     const tree = this.router.parseUrl(this.router.url);
-    tree.root.children['primary'].segments[1].path = accountId.toString();
+    tree.root.children['primary'].segments[1].path = accountId ? accountId.toString() : '0';
     this.router.navigateByUrl(tree);
   }
 
