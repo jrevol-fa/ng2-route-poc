@@ -11,6 +11,7 @@ import {OrganizationContext} from './account/organization/organization-context.s
 import {AccountRepository} from './account/account-repository';
 import {FilterRepository} from './account/organization/filter-repository.service';
 import {OrganizationRepository} from './account/organization/organization-repository.service';
+import {EmptyComponent} from './shared/empty.component';
 
 @NgModule({
   imports: [
