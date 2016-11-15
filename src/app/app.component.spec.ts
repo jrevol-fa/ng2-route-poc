@@ -12,7 +12,9 @@ describe('App: Ng2RoutePoc', () => {
         EmptyComponent
       ],
       imports: [
-        RouterTestingModule.withRoutes([{path: '', component: EmptyComponent}])
+        RouterTestingModule.withRoutes([
+          {path: '', component: EmptyComponent}
+        ])
       ]
     });
   });
