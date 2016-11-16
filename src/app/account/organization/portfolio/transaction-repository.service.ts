@@ -29,7 +29,7 @@ export class TransactionRepository {
             .filter(tx => orgTxIds === undefined || orgTxIds.indexOf(tx.id) >= 0)
             .filter(tx => filTxIds === undefined || filTxIds.indexOf(tx.id) >= 0);
         })
-        .map(txs => txs as Transaction[])
+        .map(txs => txs as Transaction[]);
     }
     return Observable.of([]);
   }

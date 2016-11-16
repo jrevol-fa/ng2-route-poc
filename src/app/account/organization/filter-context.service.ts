@@ -24,7 +24,7 @@ export class FilterContext {
       orgCtx.data$,
       this.subject.asObservable(),
       (account: Account, org: Organization, filterId: number) => {
-        return {account: account, org: org, filterId: filterId}
+        return {account: account, org: org, filterId: filterId};
       }
     ).flatMap((data: {account: Account, org: Organization, filterId: number}) =>
       repository.findOne(data.account, data.org, data.filterId));
