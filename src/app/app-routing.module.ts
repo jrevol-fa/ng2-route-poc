@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/account/1/organization/11/portfolio',
+    redirectTo: '/account',
     pathMatch: 'full'
   }
 ];
