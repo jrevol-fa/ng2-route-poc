@@ -156,5 +156,19 @@
         }
       ]
     }
+  ],
+  "currencies": [
+    {
+      "code": "EUR",
+      "name": "Euro"
+    },
+    {
+      "code": "GBP",
+      "name": "British pound"
+    },
+    {
+      "code": "USD",
+      "name": "US dollar"
+    }
   ]
 }

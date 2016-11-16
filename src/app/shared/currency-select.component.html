@@ -1,0 +1,8 @@
+<select class="form-control" (change)="select($event.target.value)">
+  <option></option>
+  <option *ngFor="let currency of currencies"
+          [selected]="currency?.code === current?.code"
+          value="{{currency.code}}">
+    {{currency.name}}
+  </option>
+</select>

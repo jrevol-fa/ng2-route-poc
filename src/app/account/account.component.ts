@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { Account } from './account';
 import { AccountContext } from './account-context.service';
 import { ACCOUNT_ID } from './index';
+import { CurrencyContext } from '../shared/currency-context.service';
+import { CURRENCY_CODE } from '../index';
 
 @Component({
   templateUrl: './account.component.html'
@@ -14,13 +16,15 @@ export class AccountComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
-              private ctx: AccountContext) {
+              private accountCtx: AccountContext,
+              private currCtx: CurrencyContext) {
   }
 
   ngOnInit() {
     this.subs.push(
-      this.route.params.subscribe(params => this.ctx.observeId(+params[ACCOUNT_ID])),
-      this.ctx.data$.subscribe(account => this.account = account)
+      this.route.params.subscribe(params => this.accountCtx.observeId(+params[ACCOUNT_ID])),
+      this.route.parent.params.subscribe((params: {currencyCode}) => this.currCtx.observeCode(params[CURRENCY_CODE])),
+      this.accountCtx.data$.subscribe(account => this.account = account)
     );
   }
 
