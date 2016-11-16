@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Lipsum} from '../lipsum.service';
+import { Component } from '@angular/core';
+import { Lipsum } from '../lipsum.service';
 
 @Component({
   selector: 'app-lipsum',

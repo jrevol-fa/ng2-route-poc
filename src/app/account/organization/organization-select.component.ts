@@ -1,9 +1,9 @@
-import {OnInit, OnDestroy, Component, Input} from '@angular/core';
-import {Organization} from './organization';
-import {Subscription, Observable} from 'rxjs';
-import {OrganizationRepository} from './organization-repository.service';
-import {Account} from '../account';
-import {Router} from '@angular/router';
+import { OnInit, OnDestroy, Component, Input } from '@angular/core';
+import { Organization } from './organization';
+import { Subscription, Observable } from 'rxjs';
+import { OrganizationRepository } from './organization-repository.service';
+import { Account } from '../account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organization-select',
@@ -44,7 +44,7 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
       if (segments[3]) {
         segments[3].path = path;
       } else {
-        segments[3] = {path: path, parameters: {}};
+        segments[3] = { path: path, parameters: {} };
       }
     } else {
       tree.root.children['primary'].segments = segments.slice(0, 3);

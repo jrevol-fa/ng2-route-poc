@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy, Input} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {Account} from './account';
-import {AccountRepository} from './account-repository';
-import {Router} from '@angular/router';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Account } from './account';
+import { AccountRepository } from './account-repository';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-select',
@@ -38,7 +38,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
       if (segments[1]) {
         segments[1].path = path;
       } else {
-        segments[1] = {path: path, parameters: {}};
+        segments[1] = { path: path, parameters: {} };
       }
     } else {
       tree.root.children['primary'].segments = segments.slice(0, 1);

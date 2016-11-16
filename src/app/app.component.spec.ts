@@ -1,8 +1,8 @@
 /* tslint:disable:no-unused-variable */
-import {TestBed, async} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {EmptyComponent} from './shared/empty.component';
+import { TestBed, async } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EmptyComponent } from './shared/empty.component';
 
 describe('App: Ng2RoutePoc', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('App: Ng2RoutePoc', () => {
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          {path: '', component: EmptyComponent}
+          { path: '', component: EmptyComponent }
         ])
       ]
     });

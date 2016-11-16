@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {TransactionRepository} from './transaction-repository.service';
-import {Transaction} from './transaction';
-import {Organization} from '../organization';
-import {Account} from '../../account';
-import {Subscription, Observable} from 'rxjs';
-import {Filter} from '../filter';
-import {PortfolioContext} from './portfolio-context.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TransactionRepository } from './transaction-repository.service';
+import { Transaction } from './transaction';
+import { Organization } from '../organization';
+import { Account } from '../../account';
+import { Subscription, Observable } from 'rxjs';
+import { Filter } from '../filter';
+import { PortfolioContext } from './portfolio-context.service';
 
 @Component({
   templateUrl: './portfolio.component.html'

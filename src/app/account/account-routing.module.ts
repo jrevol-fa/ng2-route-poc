@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AccountComponent} from './account.component';
-import {ACCOUNT_ID} from './';
-import {LipsumComponent} from '../shared/lipsum.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AccountComponent } from './account.component';
+import { ACCOUNT_ID } from './';
+import { LipsumComponent } from '../shared/lipsum.component';
 
 const routes: Routes = [
   {

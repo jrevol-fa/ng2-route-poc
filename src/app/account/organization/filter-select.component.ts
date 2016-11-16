@@ -1,11 +1,11 @@
-import {Component, Input, OnInit, OnDestroy} from '@angular/core';
-import {Filter} from './filter';
-import {Subscription, Observable} from 'rxjs';
-import {FilterRepository} from './filter-repository.service';
-import {Router} from '@angular/router';
-import {Organization} from './organization';
-import {Account} from '../account';
-import {FILTER_ID} from './index';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Filter } from './filter';
+import { Subscription, Observable } from 'rxjs';
+import { FilterRepository } from './filter-repository.service';
+import { Router } from '@angular/router';
+import { Organization } from './organization';
+import { Account } from '../account';
+import { FILTER_ID } from './index';
 
 @Component({
   selector: 'app-filter-select',

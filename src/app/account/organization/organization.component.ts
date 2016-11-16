@@ -1,11 +1,11 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Organization} from './organization';
-import {Subscription, Observable} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
-import {OrganizationContext} from './organization-context.service';
-import {AccountContext} from '../account-context.service';
-import {Account} from '../account';
-import {FilterContext} from './filter-context.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Organization } from './organization';
+import { Subscription, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { OrganizationContext } from './organization-context.service';
+import { AccountContext } from '../account-context.service';
+import { Account } from '../account';
+import { FilterContext } from './filter-context.service';
 
 @Component({
   templateUrl: './organization.component.html'

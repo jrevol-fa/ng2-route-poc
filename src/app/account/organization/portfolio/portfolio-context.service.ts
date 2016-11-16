@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {AccountContext} from '../../account-context.service';
-import {OrganizationContext} from '../organization-context.service';
-import {FilterContext} from '../filter-context.service';
-import {Organization} from '../organization';
-import {Filter} from '../filter';
-import {Account} from '../../account';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AccountContext } from '../../account-context.service';
+import { OrganizationContext } from '../organization-context.service';
+import { FilterContext } from '../filter-context.service';
+import { Organization } from '../organization';
+import { Filter } from '../filter';
+import { Account } from '../../account';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PortfolioContext {
@@ -20,7 +20,7 @@ export class PortfolioContext {
       this.organizationCtx.data$,
       this.filterCtx.data$,
       (account, organization, filter) => {
-        return {account: account, organization: organization, filter: filter};
+        return { account: account, organization: organization, filter: filter };
       }
     );
   }

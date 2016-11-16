@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Organization} from './organization';
-import {Account} from '../account';
-import {Observable} from 'rxjs';
-import {Http} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Organization } from './organization';
+import { Account } from '../account';
+import { Observable } from 'rxjs';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class OrganizationRepository {

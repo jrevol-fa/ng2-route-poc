@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Organization} from './organization';
-import {Subject, BehaviorSubject, Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Organization } from './organization';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import 'rxjs/add/operator/combineLatest';
-import {AccountContext} from '../account-context.service';
-import {Account} from '../account';
-import {OrganizationRepository} from './organization-repository.service';
+import { AccountContext } from '../account-context.service';
+import { Account } from '../account';
+import { OrganizationRepository } from './organization-repository.service';
 
 @Injectable()
 export class OrganizationContext {
@@ -21,7 +21,7 @@ export class OrganizationContext {
       accountCtx.data$,
       this.subject.asObservable(),
       (account: Account, id: number) => {
-        return {account: account, orgId: id};
+        return { account: account, orgId: id };
       }
     ).flatMap((data: {account: Account, orgId: number}) =>
       repository.findOne(data.account, data.orgId));

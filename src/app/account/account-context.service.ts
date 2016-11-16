@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Account} from './account';
-import {AccountRepository} from './account-repository';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Account } from './account';
+import { AccountRepository } from './account-repository';
 
 @Injectable()
 export class AccountContext {
