@@ -10,11 +10,19 @@
           "filters": [
             {
               "id": 111,
-              "name": "My Loans"
+              "name": "My Loans",
+              "transaction_ids": [
+                11,
+                13
+              ]
             },
             {
               "id": 112,
-              "name": "My Derivatives"
+              "name": "My Derivatives",
+              "transaction_ids": [
+                11,
+                15
+              ]
             }
           ],
           "transaction_ids": [
@@ -29,11 +37,19 @@
           "filters": [
             {
               "id": 121,
-              "name": "My Swaps"
+              "name": "My Swaps",
+              "transaction_ids": [
+                12,
+                13
+              ]
             },
             {
               "id": 122,
-              "name": "My Facilities"
+              "name": "My Facilities",
+              "transaction_ids": [
+                12,
+                14
+              ]
             }
           ],
           "transaction_ids": [
@@ -76,11 +92,17 @@
           "filters": [
             {
               "id": 211,
-              "name": "My Loans"
+              "name": "My Loans",
+              "transaction_ids": [
+                21
+              ]
             },
             {
               "id": 212,
-              "name": "My Swaps"
+              "name": "My Swaps",
+              "transaction_ids": [
+                22
+              ]
             }
           ],
           "transaction_ids": [
@@ -94,15 +116,23 @@
           "filters": [
             {
               "id": 221,
-              "name": "My Caps"
+              "name": "My Caps",
+              "transaction_ids": [
+              ]
             },
             {
               "id": 222,
-              "name": "My Floors"
+              "name": "My Floors",
+              "transaction_ids": [
+                22
+              ]
             },
             {
               "id": 223,
-              "name": "My Collars"
+              "name": "My Collars",
+              "transaction_ids": [
+                23
+              ]
             }
           ],
           "transaction_ids": [
