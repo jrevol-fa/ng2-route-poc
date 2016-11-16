@@ -1,2 +1,2 @@
 export const ORGANIZATION_ID = 'organizationId';
-export const FILTER_ID = 'filterId';
+export const FILTER_ID = 'filter';

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Filter } from './filter';
 import { Subscription, Observable } from 'rxjs';
 import { FilterRepository } from './filter-repository.service';
@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Organization } from './organization';
 import { Account } from '../account';
 import { FILTER_ID } from './index';
+import { FilterContext } from './filter-context.service';
+import { AccountContext } from '../account-context.service';
+import { OrganizationContext } from './organization-context.service';
 
 @Component({
   selector: 'app-filter-select',
@@ -13,24 +16,31 @@ import { FILTER_ID } from './index';
 })
 export class FilterSelectComponent implements OnInit, OnDestroy {
 
-  @Input()
-  accountAndOrganization: Observable<{account: Account, organization: Organization}>;
-
-  @Input()
   current: Filter;
 
   filters: Filter[];
+
   private subs: Subscription[] = [];
 
-  constructor(private repository: FilterRepository,
+  constructor(private accountCtx: AccountContext,
+              private orgCtx: OrganizationContext,
+              private filterCtx: FilterContext,
+              private repository: FilterRepository,
               private router: Router) {
   }
 
   ngOnInit() {
+    let accountAndOrganization$ = Observable.combineLatest(
+      this.accountCtx.data$,
+      this.orgCtx.data$,
+      (account: Account, org: Organization) => {
+        return { account: account, organization: org }
+      });
     this.subs.push(
-      this.accountAndOrganization
+      accountAndOrganization$
         .flatMap((data: {account: Account, organization: Organization}) => this.repository.findAll(data.account, data.organization))
-        .subscribe(filters => this.filters = filters)
+        .subscribe(filters => this.filters = filters),
+      this.filterCtx.data$.subscribe(fil => this.current = fil)
     );
   }
 

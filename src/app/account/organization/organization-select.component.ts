@@ -1,9 +1,10 @@
-import { OnInit, OnDestroy, Component, Input } from '@angular/core';
+import { OnInit, OnDestroy, Component } from '@angular/core';
 import { Organization } from './organization';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { OrganizationRepository } from './organization-repository.service';
-import { Account } from '../account';
 import { Router } from '@angular/router';
+import { OrganizationContext } from './organization-context.service';
+import { AccountContext } from '../account-context.service';
 
 @Component({
   selector: 'app-organization-select',
@@ -11,23 +12,24 @@ import { Router } from '@angular/router';
 })
 export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
-  @Input()
-  account: Observable<Account>;
-
-  @Input()
   current: Organization;
 
   organizations: Organization[];
-
+  
   private subs: Subscription[] = [];
 
-  constructor(private repository: OrganizationRepository,
+  constructor(private accountCtx: AccountContext,
+              private orgCtx: OrganizationContext,
+              private repository: OrganizationRepository,
               private router: Router) {
   }
 
   ngOnInit(): void {
     this.subs.push(
-      this.account.flatMap(acc => this.repository.findAll(acc))
+      this.orgCtx.data$
+        .subscribe(org => this.current = org),
+      this.accountCtx.data$
+        .flatMap(acc => this.repository.findAll(acc))
         .subscribe(orgs => this.organizations = orgs)
     );
   }

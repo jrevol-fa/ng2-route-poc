@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Account } from './account';
 import { AccountRepository } from './account-repository';
 import { Router } from '@angular/router';
+import { AccountContext } from './account-context.service';
 
 @Component({
   selector: 'app-account-select',
@@ -10,18 +11,20 @@ import { Router } from '@angular/router';
 })
 export class AccountSelectComponent implements OnInit, OnDestroy {
 
-  @Input()
   current: Account;
 
   accounts: Account[];
+
   private subs: Subscription[] = [];
 
-  constructor(private repository: AccountRepository,
+  constructor(private ctx: AccountContext,
+              private repository: AccountRepository,
               private router: Router) {
   }
 
   ngOnInit() {
     this.subs.push(
+      this.ctx.data$.subscribe(acc => this.current = acc),
       this.repository.findAll().subscribe(accs => this.accounts = accs)
     );
   }

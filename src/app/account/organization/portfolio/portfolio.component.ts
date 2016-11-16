@@ -3,7 +3,7 @@ import { TransactionRepository } from './transaction-repository.service';
 import { Transaction } from './transaction';
 import { Organization } from '../organization';
 import { Account } from '../../account';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Filter } from '../filter';
 import { PortfolioContext } from './portfolio-context.service';
 
@@ -40,10 +40,6 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
-  }
-
-  get accountAndOrganization$(): Observable<{account: Account, organization: Organization}> {
-    return this.ctx.data$;
   }
 
 }

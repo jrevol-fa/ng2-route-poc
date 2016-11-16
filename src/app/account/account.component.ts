@@ -22,8 +22,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(
-      this.route.params.subscribe(params => this.accountCtx.observeId(+params[ACCOUNT_ID])),
-      this.route.parent.params.subscribe((params: {currencyCode}) => this.currCtx.observeCode(params[CURRENCY_CODE])),
+      this.route.params.subscribe((params: {accountId}) => this.accountCtx.observeId(+params[ACCOUNT_ID])),
+      this.route.parent.params.subscribe((params: {currency}) => this.currCtx.observeCode(params[CURRENCY_CODE])),
       this.accountCtx.data$.subscribe(account => this.account = account)
     );
   }
