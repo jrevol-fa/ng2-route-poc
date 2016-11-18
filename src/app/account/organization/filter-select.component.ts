@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Filter } from './filter';
 import { Subscription, Observable } from 'rxjs';
 import { FilterRepository } from './filter-repository.service';
-import { Router } from '@angular/router';
 import { Organization } from './organization';
 import { Account } from '../account';
 import { FILTER_ID } from './index';
 import { FilterContext } from './filter-context.service';
 import { AccountContext } from '../account-context.service';
 import { OrganizationContext } from './organization-context.service';
+import { RouterHelper } from '../../shared/router-helper.service';
 
 @Component({
   selector: 'app-filter-select',
@@ -26,7 +26,7 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
               private orgCtx: OrganizationContext,
               private filterCtx: FilterContext,
               private repository: FilterRepository,
-              private router: Router) {
+              private routerHelper: RouterHelper) {
   }
 
   ngOnInit() {
@@ -49,13 +49,7 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
   }
 
   select(filterId: number) {
-    const tree = this.router.parseUrl(this.router.url);
-    if (filterId) {
-      tree.root.children['primary'].segments[3].parameters[FILTER_ID] = filterId.toString();
-    } else {
-      delete tree.root.children['primary'].segments[3].parameters[FILTER_ID];
-    }
-    this.router.navigateByUrl(tree);
+    this.routerHelper.selectOptional(filterId, 3, FILTER_ID);
   }
 
 }

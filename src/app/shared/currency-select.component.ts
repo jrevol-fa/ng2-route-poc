@@ -1,10 +1,10 @@
 import { Subscription } from 'rxjs';
 import { CurrencyRepository } from './currency-repository.service';
-import { Router } from '@angular/router';
 import { OnInit, OnDestroy, Component } from '@angular/core';
 import { Currency } from './currency';
 import { CURRENCY_CODE } from '../index';
 import { CurrencyContext } from './currency-context.service';
+import { RouterHelper } from './router-helper.service';
 
 @Component({
   selector: 'app-currency-select',
@@ -19,7 +19,7 @@ export class CurrencySelectComponent implements OnInit, OnDestroy {
 
   constructor(private ctx: CurrencyContext,
               private repository: CurrencyRepository,
-              private router: Router) {
+              private routerHelper: RouterHelper) {
   }
 
   ngOnInit() {
@@ -34,13 +34,7 @@ export class CurrencySelectComponent implements OnInit, OnDestroy {
   }
 
   select(code: string) {
-    const tree = this.router.parseUrl(this.router.url);
-    if (code) {
-      tree.root.children['primary'].segments[0].parameters[CURRENCY_CODE] = code;
-    } else {
-      delete tree.root.children['primary'].segments[0].parameters[CURRENCY_CODE];
-    }
-    this.router.navigateByUrl(tree);
+    this.routerHelper.selectOptional(code, 0, CURRENCY_CODE);
   }
 
 }

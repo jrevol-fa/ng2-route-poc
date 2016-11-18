@@ -14,6 +14,7 @@ import { OrganizationRepository } from './account/organization/organization-repo
 import { CurrencyContext } from './shared/currency-context.service';
 import { CurrencyRepository } from './shared/currency-repository.service';
 import { SharedModule } from './shared/shared-module';
+import { RouterHelper } from './shared/router-helper.service';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { SharedModule } from './shared/shared-module';
     FilterContext,
     FilterRepository,
     OrganizationContext,
-    OrganizationRepository
+    OrganizationRepository,
+    RouterHelper
   ],
   bootstrap: [AppComponent]
 })
