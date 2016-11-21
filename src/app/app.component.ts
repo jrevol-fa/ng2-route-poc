@@ -13,15 +13,15 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'app works!';
 
   currency: Currency;
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private currCtx: CurrencyContext) {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.currCtx.data$.subscribe(curr => this.currency = curr)
-    );
+    ];
   }
 
   ngOnDestroy() {

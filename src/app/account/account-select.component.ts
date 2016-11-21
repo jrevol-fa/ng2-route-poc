@@ -15,7 +15,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
 
   accounts: Account[];
 
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private ctx: AccountContext,
               private repository: AccountRepository,
@@ -23,10 +23,10 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.ctx.data$.subscribe(acc => this.current = acc),
       this.repository.findAll().subscribe(accs => this.accounts = accs)
-    );
+    ];
   }
 
   ngOnDestroy() {

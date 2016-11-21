@@ -17,14 +17,14 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   filter: Filter;
 
   transactions: Transaction[];
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private ctx: PortfolioContext,
               private repository: TransactionRepository) {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.ctx.data$
         .subscribe((data: {account: Account, organization: Organization, filter: Filter}) => {
           this.account = data.account;
@@ -35,7 +35,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
         .flatMap((data: {account: Account, organization: Organization, filter: Filter}) =>
           this.repository.findAll(data.account, data.organization, data.filter))
         .subscribe(transactions => this.transactions = transactions)
-    );
+    ];
   }
 
   ngOnDestroy() {

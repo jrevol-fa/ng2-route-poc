@@ -16,7 +16,7 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
 
   organizations: Organization[];
 
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private accountCtx: AccountContext,
               private orgCtx: OrganizationContext,
@@ -25,13 +25,13 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs.push(
+    this.subs = [
       this.orgCtx.data$
         .subscribe(org => this.current = org),
       this.accountCtx.data$
         .flatMap(acc => this.repository.findAll(acc))
         .subscribe(orgs => this.organizations = orgs)
-    );
+    ];
   }
 
   ngOnDestroy(): void {

@@ -12,7 +12,7 @@ export class OrganizationComponent implements OnInit, OnDestroy {
 
   organization: Organization;
 
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private route: ActivatedRoute,
               private orgCtx: OrganizationContext,
@@ -20,11 +20,11 @@ export class OrganizationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.route.params.subscribe((params: {organizationId}) => this.orgCtx.observeId(+params.organizationId)),
       this.route.params.subscribe((params: {filter}) => this.filterCtx.observeId(+params.filter)),
       this.orgCtx.data$.subscribe(organization => this.organization = organization)
-    );
+    ];
   }
 
   ngOnDestroy() {

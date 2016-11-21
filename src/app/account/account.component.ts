@@ -13,7 +13,7 @@ import { CURRENCY_CODE } from '../index';
 export class AccountComponent implements OnInit, OnDestroy {
 
   account: Account;
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private route: ActivatedRoute,
               private accountCtx: AccountContext,
@@ -21,11 +21,11 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.route.params.subscribe((params: {accountId}) => this.accountCtx.observeId(+params[ACCOUNT_ID])),
       this.route.parent.params.subscribe((params: {currency}) => this.currCtx.observeCode(params[CURRENCY_CODE])),
       this.accountCtx.data$.subscribe(account => this.account = account)
-    );
+    ];
   }
 
   ngOnDestroy() {

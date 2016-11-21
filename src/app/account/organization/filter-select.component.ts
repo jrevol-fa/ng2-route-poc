@@ -20,7 +20,7 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
 
   filters: Filter[];
 
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private accountCtx: AccountContext,
               private orgCtx: OrganizationContext,
@@ -36,12 +36,12 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
       (account: Account, org: Organization) => {
         return { account: account, organization: org }
       });
-    this.subs.push(
+    this.subs = [
       accountAndOrganization$
         .flatMap((data: {account: Account, organization: Organization}) => this.repository.findAll(data.account, data.organization))
         .subscribe(filters => this.filters = filters),
       this.filterCtx.data$.subscribe(fil => this.current = fil)
-    );
+    ];
   }
 
   ngOnDestroy() {

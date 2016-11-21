@@ -15,7 +15,7 @@ export class CurrencySelectComponent implements OnInit, OnDestroy {
   current: Currency;
 
   currencies: Currency[];
-  private subs: Subscription[] = [];
+  private subs: Subscription[];
 
   constructor(private ctx: CurrencyContext,
               private repository: CurrencyRepository,
@@ -23,10 +23,10 @@ export class CurrencySelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subs.push(
+    this.subs = [
       this.ctx.data$.subscribe(curr => this.current = curr),
       this.repository.findAll().subscribe(currs => this.currencies = currs)
-    );
+    ];
   }
 
   ngOnDestroy() {
