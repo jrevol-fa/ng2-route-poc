@@ -34,7 +34,7 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
       this.accountCtx.data$,
       this.orgCtx.data$,
       (account: Account, org: Organization) => {
-        return { account: account, organization: org }
+        return { account: account, organization: org };
       });
     this.subs = [
       accountAndOrganization$
