@@ -38,7 +38,7 @@ export class OrganizationSelectComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  select(organizationId: number) {
+  select(organizationId: string) {
     this.routerHelper.selectRequired(organizationId, 3);
   }
 

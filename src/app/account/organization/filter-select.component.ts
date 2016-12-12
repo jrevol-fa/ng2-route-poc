@@ -30,15 +30,10 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let accountAndOrganization$ = Observable.combineLatest(
-      this.accountCtx.data$,
-      this.orgCtx.data$,
-      (account: Account, org: Organization) => {
-        return { account: account, organization: org };
-      });
     this.subs = [
-      accountAndOrganization$
-        .flatMap((data: {account: Account, organization: Organization}) => this.repository.findAll(data.account, data.organization))
+      Observable.combineLatest(this.accountCtx.data$, this.orgCtx.data$)
+        .flatMap((data: any[]) =>
+          this.repository.findAll(data[0] as Account, data[1] as Organization))
         .subscribe(filters => this.filters = filters),
       this.filterCtx.data$.subscribe(fil => this.current = fil)
     ];
@@ -48,7 +43,7 @@ export class FilterSelectComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  select(filterId: number) {
+  select(filterId: string) {
     this.routerHelper.selectOptional(filterId, 3, FILTER_ID);
   }
 

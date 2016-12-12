@@ -1,4 +1,4 @@
 export class Filter {
-  id: number;
+  id: string;
   name: string;
 }

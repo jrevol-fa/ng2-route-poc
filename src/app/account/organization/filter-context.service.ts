@@ -12,25 +12,19 @@ export class FilterContext {
 
   data$: Observable<Filter>;
 
-  private subject: Subject<number>;
+  private subject: Subject<string>;
 
   constructor(accountCtx: AccountContext,
               orgCtx: OrganizationContext,
               repository: FilterRepository) {
     this.subject = new BehaviorSubject(null);
 
-    this.data$ = Observable.combineLatest(
-      accountCtx.data$,
-      orgCtx.data$,
-      this.subject.asObservable(),
-      (account: Account, org: Organization, filterId: number) => {
-        return { account: account, org: org, filterId: filterId };
-      }
-    ).flatMap((data: {account: Account, org: Organization, filterId: number}) =>
-      repository.findOne(data.account, data.org, data.filterId));
+    this.data$ = Observable.combineLatest(accountCtx.data$, orgCtx.data$, this.subject.asObservable())
+      .flatMap((data: any[]) =>
+        repository.findOne(data[0] as Account, data[1] as Organization, data[2]));
   }
 
-  observeId(filterId: number) {
+  set id(filterId: string) {
     this.subject.next(filterId);
   }
 

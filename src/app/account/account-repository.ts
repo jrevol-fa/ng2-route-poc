@@ -15,7 +15,7 @@ export class AccountRepository {
       .map(accs => accs as Account[]);
   }
 
-  findOne(id: number): Observable<Account> {
+  findOne(id: string): Observable<Account> {
     if (id) {
       return this.http.get('./assets/data.json')
         .map(res => res.json().accounts)

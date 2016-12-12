@@ -33,7 +33,7 @@ export class AccountSelectComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  select(accountId: number) {
+  select(accountId: string) {
     this.routerHelper.selectRequired(accountId, 1);
   }
 

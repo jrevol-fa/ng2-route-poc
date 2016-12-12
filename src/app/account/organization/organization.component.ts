@@ -21,8 +21,8 @@ export class OrganizationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs = [
-      this.route.params.subscribe((params: {organizationId}) => this.orgCtx.observeId(+params.organizationId)),
-      this.route.params.subscribe((params: {filter}) => this.filterCtx.observeId(+params.filter)),
+      this.route.params.subscribe((params: {organizationId}) => this.orgCtx.id = params.organizationId),
+      this.route.params.subscribe((params: {filter}) => this.filterCtx.id = params.filter),
       this.orgCtx.data$.subscribe(organization => this.organization = organization)
     ];
   }

@@ -11,23 +11,18 @@ export class OrganizationContext {
 
   data$: Observable<Organization>;
 
-  private subject: Subject<number>;
+  private subject: Subject<string>;
 
   constructor(accountCtx: AccountContext,
               repository: OrganizationRepository) {
     this.subject = new BehaviorSubject(null);
 
-    this.data$ = Observable.combineLatest(
-      accountCtx.data$,
-      this.subject.asObservable(),
-      (account: Account, id: number) => {
-        return { account: account, orgId: id };
-      }
-    ).flatMap((data: {account: Account, orgId: number}) =>
-      repository.findOne(data.account, data.orgId));
+    this.data$ = Observable.combineLatest(accountCtx.data$, this.subject.asObservable())
+      .flatMap((data: any[]) =>
+        repository.findOne(data[0] as Account, data[1]));
   }
 
-  observeId(orgId: number) {
+  set id(orgId: string) {
     this.subject.next(orgId);
   }
 

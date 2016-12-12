@@ -1,4 +1,4 @@
 export class Transaction {
-  id: number;
+  id: string;
   name: string;
 }

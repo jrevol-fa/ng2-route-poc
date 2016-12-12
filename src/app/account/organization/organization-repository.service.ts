@@ -21,7 +21,7 @@ export class OrganizationRepository {
     return Observable.of([]);
   }
 
-  findOne(account: Account, id: number): Observable<Organization> {
+  findOne(account: Account, id: string): Observable<Organization> {
     if (account && id) {
       return this.http.get('./assets/data.json')
         .map(res => res.json().accounts)

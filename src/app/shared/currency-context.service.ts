@@ -15,7 +15,7 @@ export class CurrencyContext {
     this.data$ = this.subject.asObservable().flatMap(code => repository.findOne(code));
   }
 
-  observeCode(code: string) {
+  set code(code: string) {
     this.subject.next(code);
   }
 

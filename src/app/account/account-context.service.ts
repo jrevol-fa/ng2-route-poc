@@ -8,14 +8,14 @@ export class AccountContext {
 
   data$: Observable<Account>;
 
-  private subject: Subject<number>;
+  private subject: Subject<string>;
 
   constructor(repository: AccountRepository) {
     this.subject = new BehaviorSubject(null);
     this.data$ = this.subject.asObservable().flatMap(id => repository.findOne(id));
   }
 
-  observeId(accountId: number) {
+  set id(accountId: string) {
     this.subject.next(accountId);
   }
 
