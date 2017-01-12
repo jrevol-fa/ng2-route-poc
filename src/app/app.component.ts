@@ -10,7 +10,7 @@ import { Currency } from './shared/currency';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  title = 'app works!';
+  title = 'TechItEasy!';
 
   currency: Currency;
   private subs: Subscription[];

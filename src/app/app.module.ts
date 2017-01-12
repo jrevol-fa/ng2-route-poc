@@ -15,6 +15,8 @@ import { CurrencyContext } from './shared/currency-context.service';
 import { CurrencyRepository } from './shared/currency-repository.service';
 import { SharedModule } from './shared/shared-module';
 import { RouterHelper } from './shared/router-helper.service';
+import { IframeComponent } from './shared/iframe/iframe.component';
+import { CombineLatestComponent } from './combine-latest/combine-latest.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { RouterHelper } from './shared/router-helper.service';
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    IframeComponent,
+    CombineLatestComponent
   ],
   providers: [
     Lipsum,

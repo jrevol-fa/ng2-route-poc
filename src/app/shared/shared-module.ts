@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LipsumComponent } from './lipsum.component';
 import { EmptyComponent } from './empty.component';
 import { CurrencySelectComponent } from './currency-select.component';
+import { SafePipe } from './safe';
+import { AutoHeightDirective } from './autoheight.directive';
 
 @NgModule({
   imports: [
@@ -11,13 +13,17 @@ import { CurrencySelectComponent } from './currency-select.component';
   declarations: [
     CurrencySelectComponent,
     EmptyComponent,
-    LipsumComponent
+    LipsumComponent,
+    SafePipe,
+    AutoHeightDirective
   ],
   exports: [
     CommonModule,
     CurrencySelectComponent,
     EmptyComponent,
-    LipsumComponent
+    LipsumComponent,
+    SafePipe,
+    AutoHeightDirective
   ]
 })
 export class SharedModule {
